@@ -27,31 +27,31 @@ module.exports = class Delta {
   clear() {
     this.values = [];
     this.metas = [];
+    return(this);
   }
 
   addValue(path, value) {
     this.values.push({ "path": path, "value": value });
+    return(this);
   }
 
   addMeta(path, value) {
     this.metas.push({ "path": path, "value": value });
+    return(this);
   }
 
   commit() {
-    var delta = { updates: [ ] };
-    if (this.values.length) {
-      delta.updates.push({
-        source: { type: "plugin", src: this.source },
-        timestamp: (new Date()).toISOString(),
-        values: this.values 
-      });
+    if ((this.values) || (this.metas)) {
+      var delta = { updates: [ ] };
+      if (this.values.length) {
+        delta.updates.push({ source: { type: "plugin", src: this.source }, timestamp: (new Date()).toISOString(), values: this.values });
+      }
+      if (this.metas.length) {
+        delta.updates.push({ meta: this.metas });
+      }
+      this.app.handleMessage(this.source, delta);
     }
-    if (this.metas.length) {
-      delta.updates.push({
-        meta: this.metas
-      });
-    }
-    this.app.sendMessage(this.source, delta);
+    return(this);
   }
 
 }
