@@ -35,8 +35,18 @@ module.exports = class Delta {
     return(this);
   }
 
+  addValues(values) {
+    values.forEach(v => this.addValue(v.path, v.value));
+    return(this);
+  }
+
   addMeta(path, value) {
     this.metas.push({ "path": path, "value": value });
+    return(this);
+  }
+
+  addMetas(values) {
+    values.forEach(v => this.addMeta(v.path, v.value));
     return(this);
   }
 
