@@ -50,8 +50,8 @@ module.exports = class Delta {
     return(this);
   }
 
-  commit() {
-    if ((this.values) || (this.metas)) {
+  commit(option=1) {
+    if ((this.values.length) || (this.metas.length)) {
       var delta = { updates: [ ] };
       if (this.values.length) {
         delta.updates.push({ source: { type: "plugin", src: this.source }, timestamp: (new Date()).toISOString(), values: this.values });
@@ -59,9 +59,14 @@ module.exports = class Delta {
       if (this.metas.length) {
         delta.updates.push({ meta: this.metas });
       }
-      this.app.handleMessage(this.source, delta);
+      if (option & 1) this.app.handleMessage(this.source, delta);
+      if (option & 2) console.log(JSON.stringify(delta));
     }
     return(this);
+  }
+
+  dump() {
+     this.commit(2);
   }
 
 }
