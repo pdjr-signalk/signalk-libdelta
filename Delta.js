@@ -50,6 +50,10 @@ module.exports = class Delta {
     return(this);
   }
 
+  count() {
+    return(this.values.length + this.metas.length);
+  }
+
   commit() {
     if ((this.values) || (this.metas)) {
       var delta = { updates: [ ] };
