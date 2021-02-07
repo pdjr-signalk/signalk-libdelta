@@ -54,7 +54,7 @@ module.exports = class Delta {
     return(this.values.length + this.metas.length);
   }
 
-  commit(option=1) {
+  commit(dump=0) {
     if ((this.values.length) || (this.metas.length)) {
       var delta = { updates: [ ] };
       if (this.values.length) {
@@ -63,8 +63,8 @@ module.exports = class Delta {
       if (this.metas.length) {
         delta.updates.push({ meta: this.metas });
       }
-      if (option & 1) this.app.handleMessage(this.source, delta);
-      if (option & 2) console.log(JSON.stringify(delta));
+      this.app.handleMessage(this.source, delta);
+      if (dump != 0) console.log(JSON.stringify(delta));
     }
     return(this);
   }
