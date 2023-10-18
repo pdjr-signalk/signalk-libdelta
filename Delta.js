@@ -15,6 +15,8 @@
  * permissions and limitations under the License.
  */
 
+const crypto = require('crypto');
+
 module.exports = class Delta {
 
   constructor(app, source) {
@@ -48,6 +50,16 @@ module.exports = class Delta {
   addMetas(values) {
     values.forEach(v => this.addMeta(v.path, v.value));
     return(this);
+  }
+
+  notify(path, value, sourceId) {
+    var id = (value.id) || crypto.randomUUID();
+    value.id = id;
+    value.path = path;
+    value.data = app.getSelfPath(path);
+    value.actions = [];
+    this.addValue(path, value).commit().clear();
+    return(id);
   }
 
   count() {
