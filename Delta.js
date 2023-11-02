@@ -53,7 +53,7 @@ module.exports = class Delta {
   }
 
   notify(path, value, sourceId) {
-    var id = (value.id) || crypto.randomUUID();
+    var id = (value.id) || self.crypto.randomUUID();
     value.id = id;
     value.path = path;
     value.data = app.getSelfPath(path);
