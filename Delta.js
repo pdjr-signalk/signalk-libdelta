@@ -52,25 +52,15 @@ module.exports = class Delta {
     return(this);
   }
 
-  notify(path, value, sourceId) {
-    var id = (value.id) || crypto.randomUUID();
-    value.id = id;
-    value.path = path;
-    value.data = app.getSelfPath(path);
-    value.actions = [];
-    this.addValue(path, value).commit().clear();
-    return(id);
-  }
-
   count() {
     return(this.values.length + this.metas.length);
   }
 
-  commit(dump=0) {
+  commit(src, dump=0) {
     if ((this.values.length) || (this.metas.length)) {
       var delta = { updates: [ ] };
       if (this.values.length) {
-        delta.updates.push({ source: { type: "plugin", src: this.source }, timestamp: (new Date()).toISOString(), values: this.values });
+        delta.updates.push({ source: { type: "plugin", src: (src || this.source) }, timestamp: (new Date()).toISOString(), values: this.values });
       }
       if (this.metas.length) {
         delta.updates.push({ meta: this.metas });
