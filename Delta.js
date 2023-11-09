@@ -15,6 +15,7 @@
  * permissions and limitations under the License.
  */
 
+const _ = require('lodash');
 const crypto = require('crypto');
 
 module.exports = class Delta {
@@ -38,7 +39,11 @@ module.exports = class Delta {
   }
 
   addValues(values) {
-    values.forEach(v => this.addValue(v.path, v.value));
+    if (_.isArray(values)) {
+      values.forEach(v => this.addValue(v.path, v.value));
+    } else if (_.isObject(values)) {
+      Object.keys(values).forEach(k => this.addValue(k, values[k]));
+    } else throw new Error('argument must be an array or an object');
     return(this);
   }
 
@@ -48,7 +53,11 @@ module.exports = class Delta {
   }
 
   addMetas(values) {
-    values.forEach(v => this.addMeta(v.path, v.value));
+    if (_.isArray(values)) {
+      values.forEach(v => this.addMeta(v.path, v.value));
+    } else if (_.isObject(values)) {
+      Object.keys(values).forEach(k => this.addMeta(k, values[k]));
+    } else throw new Error('argument must be an array or an object');
     return(this);
   }
 
@@ -56,11 +65,11 @@ module.exports = class Delta {
     return(this.values.length + this.metas.length);
   }
 
-  commit(src, dump=0) {
+  commit(dump=0) {
     if ((this.values.length) || (this.metas.length)) {
       var delta = { updates: [ ] };
       if (this.values.length) {
-        delta.updates.push({ source: { type: "plugin", src: (src || this.source) }, timestamp: (new Date()).toISOString(), values: this.values });
+        delta.updates.push({ source: { type: "plugin", src: this.source }, timestamp: (new Date()).toISOString(), values: this.values });
       }
       if (this.metas.length) {
         delta.updates.push({ meta: this.metas });
