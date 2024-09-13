@@ -4,7 +4,10 @@
   "description": "Signal K delta support library",
   "main": "Delta.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "publish": "yq -o=json -I=2 resources/openApi.yaml > resources/openApi.json",
+    "test": "echo \"Error: no test specified\"",
+    "build": "tsc",
+    "prepare": "tsc"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/pdjr-signalk/signalk-libdelta/issues"
   },
-  "homepage": "https://github.com/pdjr-signalk/signalk-libdelta#readme"
+  "homepage": "https://github.com/pdjr-signalk/signalk-libdelta#readme",
+  "dependencies": {
+    "@types/node": "^22.5.4"
+  }
 }
