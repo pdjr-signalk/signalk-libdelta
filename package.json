@@ -19,9 +19,11 @@
     "url": "https://github.com/pdjr-signalk/signalk-libdelta/issues"
   },
   "homepage": "https://github.com/pdjr-signalk/signalk-libdelta#readme",
-  "dependencies": {
-  },
   "devDependencies": {
+    "@types/lodash": "^4.17.7",
     "@types/node": "^22.5.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }

@@ -15,14 +15,14 @@
  * permissions and limitations under the License.
  */
 
-const _ = require('lodash');
+import * as _ from 'lodash'
 
 class Delta {
 
-  app: any
-  source: string
-  values: { path: string, value: any }[] = []
-  metas: { path: string, value: any }[] = []
+  private app: any
+  private source: string
+  private values: { path: string, value: any }[] = []
+  private metas: { path: string, value: any }[] = []
 
   constructor(app: any, source: string) {
     this.app = app
