@@ -3,8 +3,11 @@
     "target": "es2017",
     "module": "commonjs",
     "declaration": true,
-    "rootDir": "src",
-    "outDir": "./dist",
+    "rootDir": "./src/",
+    "outDir": "./",
     "strict": true
-  }
+  },
+  "include": [ "./src/" ],
+  "exclude": [ "./node-modules/" ]
 }
+

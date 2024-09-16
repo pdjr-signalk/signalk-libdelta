@@ -13,7 +13,7 @@
  * implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-declare class Delta {
+export declare class Delta {
     private app;
     private source;
     private values;
@@ -28,4 +28,3 @@ declare class Delta {
     commit(dump?: number): Delta;
     dump(): void;
 }
-export = Delta;

@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Signal K delta support library",
   "main": "Delta.js",
+  "types": "Delta.d.ts",
   "scripts": {
     "publish": "yq -o=json -I=2 resources/openApi.yaml > resources/openApi.json",
     "test": "echo \"Error: no test specified\"",
-    "build": "tsc ; cp dist/Delta.d.ts .",
+    "build": "tsc",
     "prepare": "tsc",
     "pack": "npm pack"
   },
