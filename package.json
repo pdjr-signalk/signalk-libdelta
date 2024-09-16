@@ -6,7 +6,7 @@
   "scripts": {
     "publish": "yq -o=json -I=2 resources/openApi.yaml > resources/openApi.json",
     "test": "echo \"Error: no test specified\"",
-    "build": "tsc",
+    "build": "tsc ; cp dist/Delta.d.ts .",
     "prepare": "tsc"
   },
   "repository": {
