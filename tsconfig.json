@@ -4,10 +4,9 @@
     "module": "commonjs",
     "declaration": true,
     "rootDir": "./src/",
-    "outDir": "./",
+    "outDir": "dist",
     "strict": true
   },
-  "include": [ "./src/" ],
-  "exclude": [ "./node-modules/" ]
+  "include": [ "src/**/*" ]
 }
 
