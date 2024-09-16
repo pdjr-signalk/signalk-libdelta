@@ -17,7 +17,7 @@
 
 import * as _ from 'lodash'
 
-export class Delta {
+class Delta {
 
   private app: any
   private source: string
@@ -87,3 +87,5 @@ export class Delta {
   }
 
 }
+
+export = Delta;
