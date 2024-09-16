@@ -2,8 +2,8 @@
   "name": "signalk-libdelta",
   "version": "1.0.0",
   "description": "Signal K delta support library",
-  "main": "dist/Delta",
-  "types": "dist/Delta",
+  "main": "dist/Delta.js",
+  "types": "dist/Delta.d.ts",
   "scripts": {
     "publish": "yq -o=json -I=2 resources/openApi.yaml > resources/openApi.json",
     "test": "echo \"Error: no test specified\"",
