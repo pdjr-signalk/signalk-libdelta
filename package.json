@@ -2,9 +2,14 @@
   "name": "signalk-libdelta",
   "version": "1.0.0",
   "description": "Signal K delta support library",
-  "main": "Delta.js",
+  "main": "dist/Delta.js",
+  "types": "dist/Delta.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "publish": "yq -o=json -I=2 resources/openApi.yaml > resources/openApi.json",
+    "test": "echo \"Error: no test specified\"",
+    "build": "tsc",
+    "prepare": "tsc",
+    "pack": "npm pack"
   },
   "repository": {
     "type": "git",
@@ -15,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/pdjr-signalk/signalk-libdelta/issues"
   },
-  "homepage": "https://github.com/pdjr-signalk/signalk-libdelta#readme"
+  "homepage": "https://github.com/pdjr-signalk/signalk-libdelta#readme",
+  "devDependencies": {
+    "@types/lodash": "^4.17.7",
+    "@types/node": "^22.5.4",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
