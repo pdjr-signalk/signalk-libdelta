@@ -5,10 +5,8 @@
   "main": "dist/Delta.js",
   "types": "dist/Delta.d.ts",
   "scripts": {
-    "publish": "yq -o=json -I=2 resources/openApi.yaml > resources/openApi.json",
-    "test": "echo \"Error: no test specified\"",
-    "build": "tsc",
-    "prepare": "tsc",
+    "clean": "rm -rf node_modules package-lock.json *.tgz",
+    "make": "npm install && tsc",
     "pack": "npm pack"
   },
   "repository": {
@@ -21,12 +19,12 @@
     "url": "https://github.com/pdjr-signalk/signalk-libdelta/issues"
   },
   "homepage": "https://github.com/pdjr-signalk/signalk-libdelta#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "devDependencies": {
     "@types/lodash": "^4.17.7",
     "@types/node": "^22.5.4",
-    "typescript": "^5.6.2"
-  },
-  "dependencies": {
-    "lodash": "^4.17.21"
+    "typescript": "^5.7.2"
   }
 }
